@@ -17,15 +17,15 @@ interface Props {
   onAdd: (employee: Employee) => void;
 }
 
-const DEPARTMENTS: Department[] = ["Cuisine", "Salle", "Bar", "Livraison", "Management", "Logistique"];
+const DEPARTMENTS: Department[] = ["Type a", "Type b", "Type c", "Type d", "Type e", "Type f"];
 
 const deptColors: Record<Department, string> = {
-  Cuisine: "border-orange-500/50 bg-orange-500/10 text-orange-400",
-  Salle: "border-emerald-500/50 bg-emerald-500/10 text-emerald-400",
-  Bar: "border-amber-500/50 bg-amber-500/10 text-amber-400",
-  Livraison: "border-blue-500/50 bg-blue-500/10 text-blue-400",
-  Management: "border-pink-500/50 bg-pink-500/10 text-pink-400",
-  Logistique: "border-slate-500/50 bg-slate-700/20 text-slate-400",
+  "Type a": "text-orange-400 bg-orange-500/10 border-orange-500/20",
+  "Type b": "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+  "Type c": "text-amber-400 bg-amber-500/10 border-amber-500/20",
+  "Type d": "text-blue-400 bg-blue-500/10 border-blue-500/20",
+  "Type e": "text-pink-400 bg-pink-500/10 border-pink-500/20",
+  "Type f": "text-slate-400 bg-slate-700/20 border-slate-700/30",
 };
 
 interface FormState {
@@ -48,7 +48,7 @@ interface Errors {
 const INITIAL: FormState = {
   name: "",
   role: "",
-  department: "Cuisine",
+  department: "Type a",
   zone: "",
   phone: "+228 ",
   expectedTime: "08:00",
