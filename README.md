@@ -1,4 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ War Room RH — Command Center
+
+Application de gestion du personnel en temps réel. Dashboard militaire pour superviser les présences, alertes et performances des employés.
+
+## Stack
+
+- **Next.js 16** (App Router) + TypeScript
+- **Tailwind CSS v4** + Framer Motion
+- **Supabase** (Auth + Realtime + RLS)
+- **Prisma ORM** (PostgreSQL)
+- **Recharts** pour les KPIs
+
+## Installation
+
+```bash
+npm install
+cp env.example .env.local
+# Remplir les variables Supabase dans .env.local
+npm run dev
+```
+
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/dashboard` | War Room principal : KPIs live, grille employés, alertes, zones |
+| `/employes` | Liste complète + filtres par département |
+| `/employes/[id]` | Fiche 360° : performance, présence, compétences |
+| `/alertes` | Centre d'alertes avec acquittement |
+| `/zones` | Carte d'occupation des zones en temps réel |
+| `/analytics` | Graphiques, tendances RH, classement performance |
+| `/activite` | Journal d'audit complet (timeline) |
+
+## Base de données
+
+```bash
+npx prisma generate
+npx prisma db push
+```
 
 ## Getting Started
 

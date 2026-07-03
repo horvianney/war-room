@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum EmployeeStatus {
+  present
+  late
+  absent
+  on_leave
+  off_duty
+}
+
+enum Department {
+  Cuisine
+  Salle
+  Bar
+  Livraison
+  Management
+  Logistique
+}
+
+enum AlertSeverity {
+  critical
+  warning
+  info
+}
+
+enum AlertType {
+  absence
+  late
+  overload
+  understaffed
+  emergency
+}
+
+model Employee {
+  id               String         @id @default(cuid())
+  name             String
+  role             String
+  department       Department
+  status           EmployeeStatus @default(off_duty)
+  phone            String
+  performanceScore Int            @default(80)
+  shiftsThisWeek   Int            @default(0)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  attendances  Attendance[]
+  alerts       Alert[]
+  activityLogs ActivityLog[]
+
+  @@map("employees")
+}
+
+model Zone {
+  id       String @id @default(cuid())
+  name     String @unique
+  capacity Int
+  current  Int    @default(0)
+  color    String @default("#3b82f6")
+  icon     String @default("📍")
+
+  alerts       Alert[]
+  activityLogs ActivityLog[]
+
+  @@map("zones")
+}
+
+model Attendance {
+  id           String    @id @default(cuid())
+  employeeId   String
+  checkIn      DateTime?
+  checkOut     DateTime?
+  expectedTime DateTime
+  status       EmployeeStatus
+  createdAt    DateTime  @default(now())
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@map("attendances")
+}
+
+model Alert {
+  id           String        @id @default(cuid())
+  type         AlertType
+  severity     AlertSeverity
+  message      String
+  detail       String
+  acknowledged Boolean       @default(false)
+  acknowledgedAt DateTime?
+  createdAt    DateTime      @default(now())
+
+  employeeId String?
+  zoneId     String?
+  employee   Employee? @relation(fields: [employeeId], references: [id])
+  zone       Zone?     @relation(fields: [zoneId], references: [id])
+
+  @@map("alerts")
+}
+
+model ActivityLog {
+  id         String   @id @default(cuid())
+  action     String
+  entityType String
+  entityId   String
+  entityName String
+  userId     String
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  employeeId String?
+  zoneId     String?
+  employee   Employee? @relation(fields: [employeeId], references: [id])
+  zone       Zone?     @relation(fields: [zoneId], references: [id])
+
+  @@map("activity_logs")
+}
