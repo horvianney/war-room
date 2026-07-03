@@ -3,12 +3,12 @@ export type EmployeeStatus = "present" | "late" | "absent" | "on_leave" | "off_d
 export type AlertSeverity = "critical" | "warning" | "info";
 
 export type Department =
-  | "Cuisine"
-  | "Salle"
-  | "Bar"
-  | "Livraison"
-  | "Management"
-  | "Logistique";
+  | "Type a"
+  | "Type b"
+  | "Type c"
+  | "Type d"
+  | "Type e"
+  | "Type f";
 
 export interface Employee {
   id: string;

@@ -14,15 +14,15 @@ import type { Department, Employee } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-const DEPARTMENTS: (Department | "Tous")[] = ["Tous", "Cuisine", "Salle", "Bar", "Livraison", "Management", "Logistique"];
+const DEPARTMENTS: (Department | "Tous")[] = ["Tous", "Type a", "Type b", "Type c", "Type d", "Type e", "Type f"];
 
 const deptColors: Record<Department, string> = {
-  Cuisine: "text-orange-400 bg-orange-500/10 border-orange-500/20",
-  Salle: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-  Bar: "text-amber-400 bg-amber-500/10 border-amber-500/20",
-  Livraison: "text-blue-400 bg-blue-500/10 border-blue-500/20",
-  Management: "text-pink-400 bg-pink-500/10 border-pink-500/20",
-  Logistique: "text-slate-400 bg-slate-700/20 border-slate-700/30",
+  "Type a": "text-orange-400 bg-orange-500/10 border-orange-500/20",
+  "Type b": "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+  "Type c": "text-amber-400 bg-amber-500/10 border-amber-500/20",
+  "Type d": "text-blue-400 bg-blue-500/10 border-blue-500/20",
+  "Type e": "text-pink-400 bg-pink-500/10 border-pink-500/20",
+  "Type f": "text-slate-400 bg-slate-700/20 border-slate-700/30",
 };
 
 const scoreColor = (s: number) =>
